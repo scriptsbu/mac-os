@@ -1,6 +1,6 @@
 #!/bin/bash
-echo PLEASE PAY ATTENTION TO ALL PROMPTS, PRESS ENTER TO CONTINUE
-read
+echo "PLEASE PAY ATTENTION TO ALL PROMPTS."
+read -p "PRESS ENTER TO CONTINUE"
 cd ~/Downloads
 sudo curl -O http://10.20.240.3/it/iso/macos/cs14/GovLaggar_Release_standard-p_17506.pkg
 sudo installer -verboseR -package ~/Downloads/GovLaggar_Release_standard-p_17506.pkg -target /
