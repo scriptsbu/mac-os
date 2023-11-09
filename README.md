@@ -1,5 +1,10 @@
-# mac-os
-mac-os scritps
+# Mac-os scritps
+
+=======================================================================
+
+MACMENU
+
+bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/macmenu.sh)
 
 =======================================================================
 
