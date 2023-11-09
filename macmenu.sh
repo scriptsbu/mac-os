@@ -6,7 +6,7 @@ select opt in "${options[@]}"
 do
     case $opt in
         "Option 1-CROWDSTRIKE")
-        bash <(curl -Ls http://10.20.240.3/it/script/u20logstart.sh)
+#        bash <(curl -Ls http://10.20.240.3/it/script/u20logstart.sh)
                 echo "MENU IN PROGRESS, COMEBACK LATER"
                 exit
             ;;
