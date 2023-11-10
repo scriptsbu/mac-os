@@ -50,7 +50,7 @@ do
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
             ;;
         "Option 3-Quit")
-            clear
+            bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/macmenu.sh)
             ;;
         *) echo "invalid option $REPLY";;
     esac
