@@ -50,7 +50,7 @@ do
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
             ;;
         "Option 3-Quit")
-            exit
+            break
             ;;
         *) echo "invalid option $REPLY";;
     esac
