@@ -24,7 +24,7 @@ do
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
             ;;
         "Option 3-Quit")
-            exit
+            break
             ;;
         *) echo "invalid option $REPLY";;
     esac
@@ -39,18 +39,18 @@ options=("Option 1-MS-13" "Option 2-MS-14" "Option 3-Quit")
 select opt in "${options[@]}"
 do
     case $opt in
-        "Option 1-CS13")
+        "Option 1-MS-13")
         bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/ms365/ms365-13.sh)
                 echo "INSTALLATION IS DONE!"
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"
             ;;
-        "Option 2-CS14")
+        "Option 2-MS-14")
         bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/ms365/ms365-14.sh)
                 echo "INSTALLATION IS DONE!"
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
             ;;
         "Option 3-Quit")
-        bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/macmenu.sh)
+        break
             ;;
         *) echo "invalid option $REPLY";;
     esac
