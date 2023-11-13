@@ -30,3 +30,14 @@ MS 365
 
 bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/m365/mac365.sh)
 
+=======================================================================
+
+Cisco Anyconnect
+
+On the works
+
+=======================================================================
+
+Browser 
+
+On the works
