@@ -9,21 +9,21 @@ do
         "CROWDSTRIKE")
 echo "CHOOSE FROM THE FOLLOWING OPTIONS TO INSTALL:"
 PS3=''
-options=("Option 1-CS13" "Option 2-CS14" "Option 3-Quit")
+options=("CS13" "CS14" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
-        "Option 1-CS13")
+        "CS13")
         bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/cs13/falconinstall-13.sh)
                 echo "INSTALLATION IS DONE!"
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"
             ;;
-        "Option 2-CS14")
+        "CS14")
         bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/cs14/falconinstall-14.sh)
                 echo "INSTALLATION IS DONE!"
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
             ;;
-        "Option 3-Quit")
+        "Quit")
             break
             ;;
         *) echo "invalid option $REPLY";;
@@ -35,21 +35,21 @@ exit
         "MS365")
         echo "CHOOSE FROM THE FOLLOWING OPTIONS TO INSTALL:"
 PS3=''
-options=("Option 1-MS-13" "Option 2-MS-14" "Option 3-Quit")
+options=("MS-13" "MS-14" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
-        "Option 1-MS-13")
+        "MS-13")
         bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/ms365/ms365-13.sh)
                 echo "INSTALLATION IS DONE!"
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"
             ;;
-        "Option 2-MS-14")
+        "MS-14")
         bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/ms365/ms365-14.sh)
                 echo "INSTALLATION IS DONE!"
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
             ;;
-        "Option 3-Quit")
+        "Quit")
         break
             ;;
         *) echo "invalid option $REPLY";;
@@ -61,21 +61,21 @@ exit
         "PAPERCUT")
         echo "CHOOSE FROM THE FOLLOWING OPTIONS TO INSTALL:"
 PS3=''
-options=("Option 1-Papercut-13" "Option 2-Papercut-14" "Option 3-Quit")
+options=("Papercut-13" "Papercut-14" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
-        "Option 1-Papercut-13")
+        "Papercut-13")
         bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/papercut/macpapercut.sh)
                 echo "INSTALLATION IS DONE!"
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"    
             ;;
-        "Option 2-Papercut-14")
+        "Papercut-14")
         bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/papercut/macpapercut14.sh)
                 echo "INSTALLATION IS DONE!"
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
             ;;
-        "Option 3-Quit")
+        "Quit")
         break
             ;;
         *) echo "invalid option $REPLY";;
