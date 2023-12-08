@@ -1,12 +1,12 @@
 #!/bin/bash
 echo "CHOOSE FROM THE FOLLOWING OPTIONS TO INSTALL:"
 PS3=''
-options=("Option 1-CROWDSTRIKE" "Option 2-MS365" "Option 3-PAPERCUT" "Option 4-SLACK" "Option 5-OneDrive" "Quit")
+options=("CROWDSTRIKE" "MS365" "PAPERCUT" "SLACK" "OneDrive" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
-#===================================================================================
-        "Option 1-CROWDSTRIKE")
+#=========================CROWDSTRIKE==========================================================
+        "CROWDSTRIKE")
 echo "CHOOSE FROM THE FOLLOWING OPTIONS TO INSTALL:"
 PS3=''
 options=("Option 1-CS13" "Option 2-CS14" "Option 3-Quit")
@@ -31,8 +31,8 @@ do
 done
 exit
             ;;
-#===================================================================================
-        "Option 2-MS365")
+#===================MS365================================================================
+        "MS365")
         echo "CHOOSE FROM THE FOLLOWING OPTIONS TO INSTALL:"
 PS3=''
 options=("Option 1-MS-13" "Option 2-MS-14" "Option 3-Quit")
@@ -57,8 +57,8 @@ do
 done
 exit
             ;;
-#===================================================================================
-        "Option 3-PAPERCUT")
+#======================PAPERCUT=============================================================
+        "PAPERCUT")
         echo "CHOOSE FROM THE FOLLOWING OPTIONS TO INSTALL:"
 PS3=''
 options=("Option 1-Papercut-13" "Option 2-Papercut-14" "Option 3-Quit")
@@ -83,14 +83,14 @@ do
 done
 exit
             ;;
-#===================================================================================
-        "Option 4-SLACK")
+#============================SLACK=======================================================
+        "SLACK")
         bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/slack/slack.sh)
                 echo "INSTALLATION IS DONE!"
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
             ;;
-#===================================================================================
-        "Option 5-OneDrive")
+#================================ONE_DRIVE===================================================
+        "OneDrive")
         bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/ms365/onedrive/onedrive14.sh)
                 echo "INSTALLATION IS DONE!"
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
