@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "CHOOSE FROM THE FOLLOWING OPTIONS TO INSTALL:"
 PS3=''
-options=("Option 1-CROWDSTRIKE" "Option 2-MS365" "Option 3-PAPERCUT" "Option 4-SLACK" "Option 5-OneDrive" "Option 6-Quit")
+options=("Option 1-CROWDSTRIKE" "Option 2-MS365" "Option 3-PAPERCUT" "Option 4-SLACK" "Option 5-OneDrive" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -96,7 +96,7 @@ exit
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
             ;;
 #===================================================================================
-        "Option 6-Quit")
+        "Quit")
             exit
             ;;
         *) echo "invalid option $REPLY";;
