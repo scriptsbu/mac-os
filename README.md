@@ -24,6 +24,8 @@ Papercut
 
 bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/papercut/macpapercut.sh)
 
+bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/papercut/macpapercut14.sh)
+
 =======================================================================
 
 MS 365
