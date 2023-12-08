@@ -59,9 +59,29 @@ exit
             ;;
 #===================================================================================
         "Option 3-PAPERCUT")
+        echo "CHOOSE FROM THE FOLLOWING OPTIONS TO INSTALL:"
+PS3=''
+options=("Option 1-Papercut-13" "Option 2-Papercut-14" "Option 3-Quit")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "Option 1-Papercut-13")
         bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/papercut/macpapercut.sh)
                 echo "INSTALLATION IS DONE!"
+                read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"    
+            ;;
+        "Option 2-Papercut-14")
+        bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/papercut/macpapercut14.sh)
+                echo "INSTALLATION IS DONE!"
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
+            ;;
+        "Option 3-Quit")
+        break
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
+exit
             ;;
 #===================================================================================
         "Option 4-SLACK")
