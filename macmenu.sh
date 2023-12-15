@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "CHOOSE FROM THE FOLLOWING OPTIONS TO INSTALL:"
 PS3=''
-options=("CROWDSTRIKE" "MS365" "PAPERCUT" "SLACK" "OneDrive" "Quit")
+options=("CROWDSTRIKE" "MS365" "PAPERCUT" "SLACK" "OneDrive" "ZOOM" "CISCO-CLIENT" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -91,11 +91,24 @@ exit
             ;;
 #================================ONE_DRIVE===================================================
         "OneDrive")
-        bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/ms365/onedrive/onedrive14.sh)
+        bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/onedrive/onedrive14.sh)
+                echo "INSTALLATION IS DONE!"
+                read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
+            ;;
+#===============================ZOOM====================================================
+        "ZOOM")
+        bash <(curl -Ls bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/zoom/zoom.sh)
+                echo "INSTALLATION IS DONE!"
+                read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
+            ;;
+#=================================CISCO==================================================
+        "CISCO-CLIENT")
+        bash <(curl -Ls bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/cisco/cisco-client.sh)
                 echo "INSTALLATION IS DONE!"
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
             ;;
 #===================================================================================
+
         "Quit")
             exit
             ;;
