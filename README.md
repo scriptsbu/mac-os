@@ -35,12 +35,20 @@ bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/m365/mac365.sh)
 
 =======================================================================
 
-Cisco Anyconnect
+Slack
 
-On the works
+bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/slack/slack.sh)
 
 =======================================================================
 
-Browser 
+Zoom
 
-On the works
+bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/zoom/zoom.sh)
+
+=======================================================================
+
+Cisco Anyconnect
+
+bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/cisco/cisco-client.sh)
+
+=======================================================================
