@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "CHOOSE FROM THE FOLLOWING OPTIONS TO INSTALL:"
 PS3=''
-options=("CROWDSTRIKE" "MS365" "PAPERCUT" "SLACK" "OneDrive" "ZOOM" "CISCO-CLIENT" "Quit")
+options=("CROWDSTRIKE" "MS365" "PAPERCUT" "SLACK" "OneDrive" "ZOOM" "CISCO-CLIENT" "SERIAL-NUMBER" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -105,6 +105,12 @@ exit
         "CISCO-CLIENT")
         bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/cisco/cisco-client.sh)
                 echo "INSTALLATION IS DONE!"
+                read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
+            ;;
+#===============================SERIAL====================================================
+        "SERIAL-NUMBER")
+        system_profiler SPHardwareDataType | grep "Serial Number"
+                echo "THIS IS YOUR SERIAL NUMBER"
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
             ;;
 #===================================================================================
