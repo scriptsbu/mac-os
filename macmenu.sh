@@ -109,9 +109,8 @@ exit
             ;;
 #===============================SERIAL====================================================
         "SERIAL-NUMBER")
-        system_profiler SPHardwareDataType | grep "Serial Number"
-                echo "THIS IS YOUR SERIAL NUMBER"
-                read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
+        bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/serial-number.sh)
+                read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"    
             ;;
 #===================================================================================
 
