@@ -97,13 +97,13 @@ exit
             ;;
 #===============================ZOOM====================================================
         "ZOOM")
-        bash <(curl -Ls bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/zoom/zoom.sh)
+        bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/zoom/zoom.sh)
                 echo "INSTALLATION IS DONE!"
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
             ;;
 #=================================CISCO==================================================
         "CISCO-CLIENT")
-        bash <(curl -Ls bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/cisco/cisco-client.sh)
+        bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/cisco/cisco-client.sh)
                 echo "INSTALLATION IS DONE!"
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
             ;;
