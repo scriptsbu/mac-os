@@ -52,3 +52,11 @@ Cisco Anyconnect
 bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/cisco/cisco-client.sh)
 
 =======================================================================
+
+Serial Number
+
+bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/serial-number.sh)
+
+=======================================================================
+
+
