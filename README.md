@@ -59,4 +59,10 @@ bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/serial-number.sh)
 
 =======================================================================
 
+macOS - ABROAD
+
+Bash <(curl -Ls https://github.com/scriptsbu/it-tools/raw/main/mac-abroad.sh)
+
+=======================================================================
+
 
