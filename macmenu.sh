@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "CHOOSE FROM THE FOLLOWING OPTIONS TO INSTALL:"
 PS3=''
-options=("CROWDSTRIKE" "MS365" "PAPERCUT" "SLACK" "OneDrive" "ZOOM" "CISCO-CLIENT" "SERIAL-NUMBER" "Quit")
+options=("CROWDSTRIKE" "MS365" "PAPERCUT" "SLACK" "OneDrive" "ZOOM" "CISCO-CLIENT" "SERIAL-NUMBER" "macOS-Abroad" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -110,6 +110,11 @@ exit
 #===============================SERIAL====================================================
         "SERIAL-NUMBER")
         bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/serial-number.sh)
+                read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"    
+            ;;
+#=========================ABROAD==========================================================
+     "macOS-Abroad")
+        bash <(curl -Ls https://github.com/scriptsbu/it-tools/raw/main/mac-abroad.sh)
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"    
             ;;
 #===================================================================================
