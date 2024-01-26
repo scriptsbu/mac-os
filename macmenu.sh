@@ -67,12 +67,12 @@ do
     case $opt in
         "Papercut-13")
         bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/papercut/macpapercut.sh)
-                echo "INSTALLATION IS DONE!"
+                echo "FINISH THE INSTALLATION!"
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"    
             ;;
         "Papercut-14")
         bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/papercut/macpapercut14.sh)
-                echo "INSTALLATION IS DONE!"
+                echo "FINISH THE INSTALLATION!"
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
             ;;
         "Quit")
