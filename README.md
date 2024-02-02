@@ -65,4 +65,7 @@ Bash <(curl -Ls https://github.com/scriptsbu/it-tools/raw/main/mac-abroad.sh)
 
 =======================================================================
 
+VS CODE
+
+Bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/vscode/vscode.sh)
 
