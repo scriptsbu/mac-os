@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "CHOOSE FROM THE FOLLOWING OPTIONS TO INSTALL:"
 PS3=''
-options=("CROWDSTRIKE" "MS365" "PAPERCUT" "SLACK" "OneDrive" "ZOOM" "CISCO-CLIENT" "SERIAL-NUMBER" "macOS-Abroad" "GLOBALPROTECT-VPN" "Quit")
+options=("CROWDSTRIKE" "MS365" "PAPERCUT" "SLACK" "OneDrive" "ZOOM" "CISCO-CLIENT" "SERIAL-NUMBER" "macOS-Abroad" "GLOBALPROTECT-VPN" "VS-CODE" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -120,6 +120,11 @@ exit
 #=========================GLOBAL-PROTECT-VPN==========================================================
      "GLOBALPROTECT-VPN")
         bash <(curl -Ls http://10.20.240.3/it/script/mac-global-vpn.sh)
+                read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"    
+            ;;
+#=========================VSCODE==========================================================
+     "VS-CODE")
+        bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/vscode/vscode.sh)
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"    
             ;;
 #===================================================================================
