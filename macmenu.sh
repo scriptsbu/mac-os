@@ -61,7 +61,7 @@ exit
         "PAPERCUT")
         echo "CHOOSE FROM THE FOLLOWING OPTIONS TO INSTALL:"
 PS3=''
-options=("Papercut-13" "Papercut-14" "Quit")
+options=("Papercut-13" "Papercut-14" "Papercut-15" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -75,6 +75,11 @@ do
                 echo "FINISH THE INSTALLATION!"
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
             ;;
+        "Papercut-15")
+        bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/papercut/macpapercut15.sh)
+                echo "FINISH THE INSTALLATION!"
+                read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"              
+            ;;     
         "Quit")
         break
             ;;
