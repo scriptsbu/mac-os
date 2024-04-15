@@ -61,11 +61,17 @@ bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/serial-number.sh)
 
 macOS - ABROAD
 
-Bash <(curl -Ls https://github.com/scriptsbu/it-tools/raw/main/mac-abroad.sh)
+bash <(curl -Ls https://github.com/scriptsbu/it-tools/raw/main/mac-abroad.sh)
 
 =======================================================================
 
 VS CODE
 
-Bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/vscode/vscode.sh)
+bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/vscode/vscode.sh)
+
+=======================================================================
+
+Uninstall Global Protect
+
+sudo bash /Applications/GlobalProtect.app/Contents/Resources/uninstall_gp.sh
 
