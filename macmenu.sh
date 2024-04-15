@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "CHOOSE FROM THE FOLLOWING OPTIONS TO INSTALL:"
 PS3=''
-options=("CROWDSTRIKE" "MS365" "PAPERCUT" "SLACK" "OneDrive" "ZOOM" "CISCO-CLIENT" "SERIAL-NUMBER" "macOS-Abroad" "GLOBALPROTECT-VPN" "VS-CODE" "Quit")
+options=("CROWDSTRIKE" "MS365" "PAPERCUT" "SLACK" "OneDrive" "ZOOM" "CISCO-CLIENT" "SERIAL-NUMBER" "macOS-Abroad" "GLOBALPROTECT-VPN" "VS-CODE" "Global-Protect-Uninstall" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -131,6 +131,11 @@ exit
      "VS-CODE")
         bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/vscode/vscode.sh)
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"    
+            ;;
+#=========================VSCODE==========================================================
+   "Global-Protect-Uninstall")
+sudo bash /Applications/GlobalProtect.app/Contents/Resources/uninstall_gp.sh
+                read -p "
             ;;
 #===================================================================================
         "Quit")
