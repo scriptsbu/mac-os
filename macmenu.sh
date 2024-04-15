@@ -134,7 +134,7 @@ exit
             ;;
 #=========================VSCODE==========================================================
    "Global-Protect-Uninstall")
-       bash /Applications/GlobalProtect.app/Contents/Resources/uninstall_gp.sh
+       sudo bash /Applications/GlobalProtect.app/Contents/Resources/uninstall_gp.sh
                 read -p "PRESS ENTER TO RETURN TO THE MAIN MENU"
             ;;
 #===================================================================================
