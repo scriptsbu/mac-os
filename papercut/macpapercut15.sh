@@ -5,4 +5,5 @@ cd ~/Downloads
 #open pc-print-deploy-client%5bpapercut.torc.tech%5d.dmg
 #OLD LINES
 sudo curl -O http://10.20.240.3/it/iso/macos/Papercut/paper15/PaperCut%20Print%20Deploy%20Client.pkg
-sudo installer -verboseR -package ~/Downloads/PaperCut%20Print%20Deploy%20Client.pkg -target /
+mv PaperCut%20Print%20Deploy%20Client.pkg PaperCut Print Deploy Client.pkg
+sudo installer -verboseR -package ~/Downloads/PaperCut Print Deploy Client.pkg -target /
