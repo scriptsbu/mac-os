@@ -42,3 +42,5 @@ if [ $? -eq 0 ]; then
 else
     echo "Download failed. Error code: $?"
 fi
+
+sudo rm -r $file_path
