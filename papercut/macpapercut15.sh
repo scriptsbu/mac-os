@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Set the download URL
-download_url="http://10.20.240.3/it/iso/macos/papercut15/pc-print-deploy-client%5bpapercut.torc.tech%5d.dmg"
+#download_url="http://10.20.240.3/it/iso/macos/papercut15/pc-print-deploy-client%5bpapercut.torc.tech%5d.dmg"
+download_url="http://10.20.240.3/it/iso/macos/Papercut/pc-print-deploy-client%5bpapercut.torc.tech%5d.dmg"
 
 # Set the destination file name and path
 file_name="pc-print-deploy-client.dmg"
