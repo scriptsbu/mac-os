@@ -23,7 +23,7 @@ sudo installer -pkg "$package_path" -target /
 
 # Unmount the DMG file
 echo "Unmounting the DMG file..."
-diskutil unmount force "/Volumes/Acrobat DC"
+diskutil unmount force "/Volumes/Acrobat"
 
 rm "$filename"
 
