@@ -4,16 +4,16 @@
 echo "Starting the script..."
 
 # Disable FileVault for the current user
-current_user=$(whoami)
-echo "Disabling FileVault for user: $current_user..."
-sudo fdesetup disable
+#current_user=$(whoami)
+#echo "Disabling FileVault for user: $current_user..."
+#sudo fdesetup disable
 
 # Display a message via Jamf
 echo "Displaying message via Jamf: Initiating macOS Update - The update process may take up to 4 hours to complete. Please refrain from rebooting your system during this time to ensure a smooth installation."
 sudo jamf displayMessage -message "Initiating macOS Update - The update process may take up to 4 hours to complete. Please refrain from rebooting your system during this time to ensure a smooth installation."
 echo "No message provided for Jamf."
 
-# Write the new preferences
+# Write the new preferences to enable update menu
 echo "Writing new preferences..."
 sudo defaults delete "/Library/Preferences/com.apple.systempreferences" "com.apple.preferences.softwareupdate"
 echo "New preferences written."
@@ -32,13 +32,9 @@ echo "Downloading macOS update: macOS Sonoma 14.7.1-23H222..."
 sudo softwareupdate -d "macOS Sonoma 14.7.1-23H222"
 echo "Update macOS Sonoma 14.7.1-23H222 downloaded."
 
-echo "Installing macOS update: macOS Sonoma 14.7.1-23H222..."
-sudo softwareupdate -ir "macOS Sonoma 14.7.1-23H222" --os-only
-echo "Update macOS Sonoma 14.7.1-23H222 installed."
-
 # Display a message via Jamf
-echo "Displaying message via Jamf: The macOS update has been successfully installed. The system will reboot in 15 minutes. Please make sure to save all your work and close any open applications to avoid losing data. Do not reboot the system on your own, as this may corrupt your files. Allow the system to reboot itself to ensure a smooth transition and to avoid any potential issues."
-sudo jamf displayMessage -message "The macOS update has been successfully installed. The system will reboot in 15 minutes. Please make sure to save all your work and close any open applications to avoid losing data. Do not reboot the system on your own, as this may corrupt your files. Allow the system to reboot itself to ensure a smooth transition and to avoid any potential issues."
+echo "Displaying message via Jamf: The macOS update has been successfully downloaded. The system will reboot in 15 minutes. Please make sure to save all your work and close any open applications to avoid losing data. Do not reboot the system on your own, as this may corrupt your files. Allow the system to reboot itself to ensure a smooth transition and to avoid any potential issues."
+sudo jamf displayMessage -message "The macOS update has been successfully downloaded. The system will reboot in 15 minutes. Please make sure to save all your work and close any open applications to avoid losing data. Do not reboot the system on your own, as this may corrupt your files. Allow the system to reboot itself to ensure a smooth transition and to avoid any potential issues."
 
 sleep 10
 
@@ -52,6 +48,10 @@ sleep 5
 # Notify that the script has completed
 echo "Script completed."
 
+echo "Installing macOS update: macOS Sonoma 14.7.1-23H222..."
+sudo softwareupdate -iR "macOS Sonoma 14.7.1-23H222" --verbose
+echo "Update macOS Sonoma 14.7.1-23H222 installed."
+
 # Perform the restart
-echo "Shutting down now..."
-sudo shutdown -r now
+#echo "Shutting down now..."
+#sudo shutdown -r now
