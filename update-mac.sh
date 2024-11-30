@@ -1,66 +1,56 @@
 #!/bin/bash
+
 # Notify that the script has started
 echo "Starting the script..."
 
-# Remove the system preferences plist
-echo "Removing system preferences plist..."
-sudo rm /Library/Preferences/com.apple.systempreferences.plist
-echo "System preferences plist removed."
+# Disable FileVault
+echo "Disabling FileVault..."
+sudo fdesetup disable
+
+# Display a message via Jamf
+echo "Displaying message via Jamf: Initiating macOS Update - The update process may take up to 4 hours to complete. Please refrain from rebooting your system during this time to ensure a smooth installation."
+sudo jamf displayMessage -message "Initiating macOS Update - The update process may take up to 4 hours to complete. Please refrain from rebooting your system during this time to ensure a smooth installation."
+echo "No message provided for Jamf."
 
 # Write the new preferences
 echo "Writing new preferences..."
-sudo defaults write "/Library/Preferences/com.apple.systempreferences" -array "com.apple.preferences.softwareupdate"
+sudo defaults delete "/Library/Preferences/com.apple.systempreferences" "com.apple.preferences.softwareupdate"
 echo "New preferences written."
 
 # Check for available software updates
 echo "Checking for available software updates..."
 softwareupdate -l
 
-# Install a specific macOS update
-if [ -z "$4" ]; then
-    echo "No update specified. Exiting."
-    exit 1
+# Check if the update specified in macOS Sonoma 14.7.1-23H222 is already installed
+if softwareupdate --history | grep -q "macOS Sonoma 14.7.1-23H222"; then
+    echo "Update macOS Sonoma 14.7.1-23H222 is already installed. Exiting script."
+    exit 0
 fi
 
-echo "Installing macOS update: $4..."
-sudo softwareupdate -i "$4"
-echo "Update $4 installed."
+echo "Downloading macOS update: macOS Sonoma 14.7.1-23H222..."
+sudo softwareupdate -d "macOS Sonoma 14.7.1-23H222"
+echo "Update macOS Sonoma 14.7.1-23H222 downloaded."
+
+echo "Installing macOS update: macOS Sonoma 14.7.1-23H222..."
+sudo softwareupdate -i "macOS Sonoma 14.7.1-23H222"
+echo "Update macOS Sonoma 14.7.1-23H222 installed."
 
 # Display a message via Jamf
-if [ -n "$5" ]; then
-    echo "Displaying message via Jamf: $5"
-    sudo jamf displayMessage -message "$5"
-else
-    echo "No message provided for Jamf."
-fi
+echo "Displaying message via Jamf: The macOS update has been successfully installed. The system will reboot in 15 minutes. Please make sure to save all your work and close any open applications to avoid losing data. Do not reboot the system on your own, as this may corrupt your files. Allow the system to reboot itself to ensure a smooth transition and to avoid any potential issues."
+sudo jamf displayMessage -message "The macOS update has been successfully installed. The system will reboot in 15 minutes. Please make sure to save all your work and close any open applications to avoid losing data. Do not reboot the system on your own, as this may corrupt your files. Allow the system to reboot itself to ensure a smooth transition and to avoid any potential issues."
 
-# Check for any other updates after the specified update
-echo "Checking for any additional software updates..."
-if softwareupdate -l | grep -q "Software Update found"; then
-    echo "Additional updates are available. Installing updates..."
-    sudo softwareupdate -ia  # Install all available updates
-    echo "Updates installed. The system will reboot in $6 seconds."
+sleep 10
 
-    # Delay
-    sleep $6
+# Display a message via Jamf if provided
+echo "Displaying last message via Jamf: The system will reboot in 1 minute."
+sudo jamf displayMessage -message "The system will reboot in 1 minute."
 
-    # Display a message via Jamf if provided
-    if [ -n "$7" ]; then
-        echo "Displaying last message via Jamf: $7"
-        sudo jamf displayMessage -message "$7"
-    else
-        echo "No last message provided for Jamf."
-    fi
-
-    # Delay
-    sleep $8
-     
-    # Perform the restart
-    echo "Rebooting now..."
-    sudo shutdown -r now
-else
-    echo "No additional updates available."
-fi
+# Delay
+sleep 5
 
 # Notify that the script has completed
 echo "Script completed."
+
+# Perform the restart
+echo "Shutting down now..."
+sudo shutdown -r now
