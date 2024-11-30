@@ -3,8 +3,9 @@
 # Notify that the script has started
 echo "Starting the script..."
 
-# Disable FileVault
-echo "Disabling FileVault..."
+# Disable FileVault for the current user
+current_user=$(whoami)
+echo "Disabling FileVault for user: $current_user..."
 sudo fdesetup disable
 
 # Display a message via Jamf
@@ -22,17 +23,17 @@ echo "Checking for available software updates..."
 softwareupdate -l
 
 # Check if the update specified in macOS Sonoma 14.7.1-23H222 is already installed
-if softwareupdate --history | grep -q "macOS Sonoma 14.7.1-23H222"; then
-    echo "Update macOS Sonoma 14.7.1-23H222 is already installed. Exiting script."
-    exit 0
-fi
+#if softwareupdate --history | grep -q "macOS Sonoma 14.7.1-23H222"; then
+#    echo "Update macOS Sonoma 14.7.1-23H222 is already installed. Exiting script."
+#    exit 0
+#fi
 
 echo "Downloading macOS update: macOS Sonoma 14.7.1-23H222..."
 sudo softwareupdate -d "macOS Sonoma 14.7.1-23H222"
 echo "Update macOS Sonoma 14.7.1-23H222 downloaded."
 
 echo "Installing macOS update: macOS Sonoma 14.7.1-23H222..."
-sudo softwareupdate -i "macOS Sonoma 14.7.1-23H222"
+sudo softwareupdate -ir "macOS Sonoma 14.7.1-23H222" --os-only
 echo "Update macOS Sonoma 14.7.1-23H222 installed."
 
 # Display a message via Jamf
