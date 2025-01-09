@@ -57,5 +57,5 @@ sudo softwareupdate -iR "macOS Sonoma 14.7.1-23H222" --verbose
 echo "Update macOS Sonoma 14.7.1-23H222 installed."
 
 # Perform the restart
-#echo "Shutting down now..."
-#sudo shutdown -r now
+echo "Shutting down now..."
+sudo shutdown -r now
