@@ -1,5 +1,5 @@
 #!/bin/bash
-
+MACVER='macOS Sonoma 14.7.1-23H222'
 # Notify that the script has started
 echo "Starting the script..."
 
@@ -26,15 +26,15 @@ echo "New preferences written."
 echo "Checking for available software updates..."
 softwareupdate -l
 
-# Check if the update specified in macOS Sonoma 14.7.1-23H222 is already installed
-#if softwareupdate --history | grep -q "macOS Sonoma 14.7.1-23H222"; then
-#    echo "Update macOS Sonoma 14.7.1-23H222 is already installed. Exiting script."
+# Check if the update specified in $MACVER is already installed
+#if softwareupdate --history | grep -q "$MACVER"; then
+#    echo "Update $MACVER is already installed. Exiting script."
 #    exit 0
 #fi
 
-echo "Downloading macOS update: macOS Sonoma 14.7.1-23H222..."
-sudo softwareupdate -d "macOS Sonoma 14.7.1-23H222"
-echo "Update macOS Sonoma 14.7.1-23H222 downloaded."
+echo "Downloading macOS update: $MACVER..."
+sudo softwareupdate -d "$MACVER"
+echo "Update $MACVER downloaded."
 
 # Display a message via Jamf
 echo "Displaying message via Jamf: The macOS update has been successfully downloaded. The system will reboot in 15 minutes. Please make sure to save all your work and close any open applications to avoid losing data. Do not reboot the system on your own, as this may corrupt your files. Allow the system to reboot itself to ensure a smooth transition and to avoid any potential issues."
@@ -52,9 +52,9 @@ sleep 5
 # Notify that the script has completed
 echo "Script completed."
 
-echo "Installing macOS update: macOS Sonoma 14.7.1-23H222..."
-sudo softwareupdate -iR "macOS Sonoma 14.7.1-23H222" --verbose
-echo "Update macOS Sonoma 14.7.1-23H222 installed."
+echo "Installing macOS update: $MACVER..."
+sudo softwareupdate -iR "$MACVER" --verbose
+echo "Update $MACVER installed."
 
 # Perform the restart
 echo "Shutting down now..."
