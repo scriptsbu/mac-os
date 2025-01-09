@@ -4,8 +4,12 @@
 echo "Starting the script..."
 
 # Disable FileVault for the current user
-#current_user=$(whoami)
-#echo "Disabling FileVault for user: $current_user..."
+current_user=$(whoami)
+echo "Disabling FileVault for user: $current_user..."
+userNameUUID=$(dscl . -read /Users/$USER/ GeneratedUID | awk '{print $2}')
+diskutil apfs unlockVolume /dev/disk3s1 -user $userNameUUID
+diskutil apfs disableFileVault disk3s1 -user $userNameUUID
+fdesetup status
 #sudo fdesetup disable
 
 # Display a message via Jamf
