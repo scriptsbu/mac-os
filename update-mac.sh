@@ -60,5 +60,5 @@ sudo softwareupdate -i "$MACVER" --verbose
 echo "Update $MACVER installed."
 
 # Perform the restart
-echo "Shutting down now..."
-sudo shutdown -r now
+#echo "Shutting down now..."
+#sudo shutdown -r now
