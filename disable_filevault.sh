@@ -13,3 +13,4 @@ sudo diskutil apfs disableFileVault disk3s1 -user "$userNameUUID"
 
 # Check FileVault status
 fdesetup status
+sudo jamf displayMessage -message "Please inform the IT department that your computer is ready for an update."
