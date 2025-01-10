@@ -53,7 +53,10 @@ sleep 5
 echo "Script completed."
 
 echo "Installing macOS update: $MACVER..."
-sudo softwareupdate -iR "$MACVER" --verbose
+# Install w/o reboot
+sudo softwareupdate -i "$MACVER" --verbose
+# Install and reboot
+#sudo softwareupdate -iR "$MACVER" --verbose
 echo "Update $MACVER installed."
 
 # Perform the restart
