@@ -1,5 +1,5 @@
 #!/bin/bash
-MACVER='macOS Sonoma 14.7.1-23H222'
+MACVER='macOS macOS Sonoma 14.7*'
 # Notify that the script has started
 echo "Starting the script..."
 
