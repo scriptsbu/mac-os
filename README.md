@@ -75,3 +75,7 @@ Uninstall Global Protect
 
 sudo bash /Applications/GlobalProtect.app/Contents/Resources/uninstall_gp.sh
 
+
+Scan apps that have been blocked by Gatekeeper.
+
+bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/refs/heads/main/gatekeeper-scan.sh)
