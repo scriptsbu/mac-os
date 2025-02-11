@@ -47,16 +47,17 @@ loading_bar() {
 # Function to install logioptionsplus
 install_logioptions() {
     echo "Purging logioptionsplus..."
-    # Kill any running instances of logioptionsplus
     sudo pkill logioptionsplus
 
     # Uninstall logioptionsplus.app silently with a loading bar
     app_path="/Applications/logioptionsplus.app"
     if [ -d "$app_path" ]; then
         echo "Uninstalling logioptionsplus.app..."
-        (sudo rm -rf "$app_path") &
+        {
+            sudo rm -rf "$app_path"
+        } &
         loading_bar 5  # Adjust the duration as needed
-        wait  # Wait for the uninstall command to finish
+        wait
         echo "Uninstalled logioptionsplus.app."
     else
         echo "logioptionsplus.app not found in /Applications."
@@ -65,9 +66,11 @@ install_logioptions() {
     # Create the backup directory silently with a loading bar
     backup_dir="/tmp/logi_backup"
     echo "Creating backup directory..."
-    (mkdir -p "$backup_dir") &
+    {
+        mkdir -p "$backup_dir"
+    } &
     loading_bar 2  # Adjust the duration as needed
-    wait  # Wait for the mkdir command to finish
+    wait
 
     # Define the paths to search for Logitech files
     paths=(
@@ -95,9 +98,11 @@ install_logioptions() {
         local pattern="$1"
         for path in "${paths[@]}"; do
             echo "Searching in: $path"
-            (find "$path" -iname "*$pattern*" -exec mv {} "$backup_dir" \; -exec rm -rf {} +) &
+            {
+                find "$path" -iname "*$pattern*" -exec mv {} "$backup_dir" \; -exec rm -rf {} +
+            } &
             loading_bar 3  # Adjust duration for each path
-            wait  # Wait for the find command to finish
+            wait
         done
     }
 
@@ -114,15 +119,19 @@ install_logioptions() {
     installer_zip="/tmp/logioptionsplus_installer.zip"
 
     echo "Downloading logioptionsplus installer..."
-    (curl -L "$installer_url" -o "$installer_zip") &
+    {
+        curl -L "$installer_url" -o "$installer_zip"
+    } &
     loading_bar 5  # Adjust the duration as needed
-    wait  # Wait for the download to finish
+    wait
 
     # Unzip the installer
     echo "Unzipping logioptionsplus installer..."
-    (unzip -o "$installer_zip" -d /tmp) &
+    {
+        unzip -o "$installer_zip" -d /tmp
+    } &
     loading_bar 3  # Adjust duration as needed
-    wait  # Wait for the unzip command to finish
+    wait
 
     # Install logioptionsplus
     installer_app="/tmp/logioptionsplus_installer.app"
