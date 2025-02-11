@@ -26,7 +26,22 @@ echo "  _| |_    | | "
 echo " |_____|   |_| "
 echo "Welcome to the IT Support Script!"
 # ***********************************************************************
+# Function to show a loading bar
+loading_bar() {
+    local duration=$1
+    local bar_length=20
+    local progress=0
+    local increment=$((duration / bar_length))
 
+    while [ $progress -le $duration ]; do
+        local filled=$((progress * bar_length / duration))
+        local empty=$((bar_length - filled))
+        printf "\r[%-${bar_length}s] %d%%" "$(printf "%0.s#" $(seq 1 $filled))$(printf "%0.s-" $(seq 1 $empty))" $((progress * 100 / duration))
+        sleep $increment
+        ((progress += increment))
+    done
+    echo -ne "\r[####################] 100%\n"
+}
 # Function to install logioptionsplus
 install_logioptions() {
     echo "Purging logioptionsplus..."
@@ -73,7 +88,7 @@ install_logioptions() {
         local pattern="$1"
         for path in "${paths[@]}"; do
             echo "Searching in: $path"
-            find "$path" -iname "*$pattern*" -exec mv {} "$backup_dir" \; -exec rm -rf {} +
+            find "$path" -iname "*$pattern*" -exec mv {} "$backup_dir" \; -exec rm -rf {} + > /dev/null 2>&1
         done
     }
 
@@ -83,7 +98,7 @@ install_logioptions() {
     move_and_delete_files "LogiOptions"
     move_and_delete_files "logioptions"
     move_and_delete_files "LogiPlugin"
-
+    loading_bar 10  # Adjust duration as needed
     # Download logioptionsplus installer
     echo "Installing logioptionsplus..."
     installer_url="https://download01.logi.com/web/ftp/pub/techsupport/optionsplus/logioptionsplus_installer.zip"
@@ -110,7 +125,7 @@ install_logioptions() {
 
     # Clean up
     echo "Removing installation files..."
-    rm -rf "$installer_zip" /tmp/logioptionsplus_installer
+    sudo rm -rf "$installer_zip" /tmp/logioptionsplus_installer
 
     echo "Backup and installation process completed. Files stored at $backup_dir"
 }
