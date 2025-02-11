@@ -25,8 +25,8 @@ echo "   | |     | | "
 echo "  _| |_    | | "
 echo " |_____|   |_| "
 echo "Welcome to the IT Support Script!"
+# ***********************************************************************
 
-Welcome to the IT Support Script!
 # Function to install logioptionsplus
 install_logioptions() {
     echo "Installing logioptionsplus..."
