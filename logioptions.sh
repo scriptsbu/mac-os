@@ -101,6 +101,8 @@ install_logioptions() {
         echo "Installing logioptionsplus..."
         open "$installer_app"
         read -p "Press any key after installation is complete..."
+        # Resolving Options+ issues when Secure Input is enabled. More info. here: https://support.logi.com/hc/en-us/articles/360023189334-Logitech-Options-and-Options-issues-when-Secure-Input-is-enabled
+        open -a Terminal --args bash -c 'kill -9 $(ioreg -l -d 1 -w 0 | grep kCGSSessionSecureInputPID | sed -E "s/.*\"kCGSSessionSecureInputPID\"=([0-9]+).*/\1/")'
     else
         echo "Installer not found."
     fi
