@@ -29,7 +29,7 @@ echo "Welcome to the IT Support Script!"
 
 # Function to install logioptionsplus
 install_logioptions() {
-    echo "Installing logioptionsplus..."
+    echo "Purging logioptionsplus..."
     # Kill any running instances of logioptionsplus
     sudo pkill logioptionsplus
 
@@ -85,6 +85,7 @@ install_logioptions() {
     move_and_delete_files "LogiPlugin"
 
     # Download logioptionsplus installer
+    echo "Installing logioptionsplus..."
     installer_url="https://download01.logi.com/web/ftp/pub/techsupport/optionsplus/logioptionsplus_installer.zip"
     installer_zip="/tmp/logioptionsplus_installer.zip"
 
