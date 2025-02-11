@@ -2,6 +2,12 @@
 
 =======================================================================
 
+LOGI OPTIONS FIX
+
+bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/refs/heads/main/logioptions.sh)
+
+=======================================================================
+
 MACMENU
 
 bash <(curl -Ls https://github.com/scriptsbu/mac-os/raw/main/macmenu.sh)
