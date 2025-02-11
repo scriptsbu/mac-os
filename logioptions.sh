@@ -90,7 +90,7 @@ install_logioptions() {
         local pattern="$1"
         for path in "${paths[@]}"; do
             {
-                find "$path" -iname "*$pattern*" -exec mv {} "$backup_dir" \; -exec rm -rf {} + > /dev/null 2>&1
+                sudo find "$path" -iname "*$pattern*" -exec mv {} "$backup_dir" \; -exec rm -rf {} + > /dev/null 2>&1
             }
         done
     }
