@@ -90,7 +90,8 @@ install_logioptions() {
         local pattern="$1"
         for path in "${paths[@]}"; do
             {
-                sudo find "$path" -iname "*$pattern*" -exec mv {} "$backup_dir" \; -exec rm -rf {} + > /dev/null 2>&1
+                # Move the files first
+                sudo find "$path" -iname "*$pattern*" -exec mv {} "$backup_dir" \; > /dev/null 2>&1
             }
         done
     }
@@ -106,7 +107,14 @@ install_logioptions() {
     } &
 
     loading_bar 10  # Adjust duration as needed
-    wait  # Wait for the move and delete process to finish
+    wait  # Wait for the move process to finish
+
+    # Now perform the deletion without a loading bar
+    echo "Deleting moved Logitech related files..."
+    for file in "$backup_dir"/*; do
+        sudo rm -rf "$file" > /dev/null 2>&1
+    done
+    echo "Deletion complete."
 
     # Download logioptionsplus installer
     echo "Installing logioptionsplus..."
