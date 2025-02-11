@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Uninstall logioptionsplus.app
+sudo pkill logioptionsplus
 app_path="/Applications/logioptionsplus.app"
 if [ -d "$app_path" ]; then
     echo "Uninstalling logioptionsplus.app..."
