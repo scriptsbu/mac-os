@@ -96,7 +96,7 @@ install_logioptions() {
     unzip -o "$installer_zip" -d /tmp
 
     # Install logioptionsplus
-    installer_app="/tmp/logioptionsplus_installer/logioptionsplus_installer.app"
+    installer_app="/tmp/logioptionsplus_installer.app"
     if [ -d "$installer_app" ]; then
         echo "Installing logioptionsplus..."
         open "$installer_app"
