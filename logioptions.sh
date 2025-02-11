@@ -138,7 +138,7 @@ restore_backup() {
 # Main menu
 while true; do
     echo "Select an option:"
-    echo "1) Install logioptionsplus"
+    echo "1) Fix/Install logioptionsplus"
     echo "2) Restore backup"
     echo "3) Exit"
     read -p "Enter your choice (1-3): " choice
