@@ -8,7 +8,7 @@ sudo pkill logioptionsplus
 app_path="/Applications/logioptionsplus.app"
 if [ -d "$app_path" ]; then
     echo "Uninstalling logioptionsplus.app..."
-    rm -rf "$app_path"
+    sudo rm -rf "$app_path"
     echo "Uninstalled logioptionsplus.app."
 else
     echo "logioptionsplus.app not found in /Applications."
