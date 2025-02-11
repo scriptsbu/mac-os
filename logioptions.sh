@@ -27,50 +27,25 @@ echo " |_____|   |_| "
 echo "Welcome to the IT Support Script!"
 # ***********************************************************************
 
-# Function to show a loading bar
-loading_bar() {
-    local duration=$1
-    local bar_length=20
-    local progress=0
-    local increment=$((duration / bar_length))
-
-    while [ $progress -le $duration ]; do
-        local filled=$((progress * bar_length / duration))
-        local empty=$((bar_length - filled))
-        printf "\r[%-${bar_length}s] %d%%" "$(printf "%0.s#" $(seq 1 $filled))$(printf "%0.s-" $(seq 1 $empty))" $((progress * 100 / duration))
-        sleep $increment
-        ((progress += increment))
-    done
-    echo -ne "\r[####################] 100%\n"
-}
-
 # Function to install logioptionsplus
 install_logioptions() {
     echo "Purging logioptionsplus..."
+    # Kill any running instances of logioptionsplus
     sudo pkill logioptionsplus
 
-    # Uninstall logioptionsplus.app silently with a loading bar
+    # Uninstall logioptionsplus.app
     app_path="/Applications/logioptionsplus.app"
     if [ -d "$app_path" ]; then
         echo "Uninstalling logioptionsplus.app..."
-        {
-            sudo rm -rf "$app_path"
-        } &
-        loading_bar 5  # Adjust the duration as needed
-        wait
+        sudo rm -rf "$app_path"
         echo "Uninstalled logioptionsplus.app."
     else
         echo "logioptionsplus.app not found in /Applications."
     fi
 
-    # Create the backup directory silently with a loading bar
+    # Create the backup directory
     backup_dir="/tmp/logi_backup"
-    echo "Creating backup directory..."
-    {
-        mkdir -p "$backup_dir"
-    } &
-    loading_bar 2  # Adjust the duration as needed
-    wait
+    mkdir -p "$backup_dir"
 
     # Define the paths to search for Logitech files
     paths=(
@@ -93,16 +68,12 @@ install_logioptions() {
         "~/Library/StartupItems"
     )
 
-    # Function to move and delete Logitech files with a loading bar
+    # Function to move and then delete Logitech files
     move_and_delete_files() {
         local pattern="$1"
         for path in "${paths[@]}"; do
             echo "Searching in: $path"
-            {
-                find "$path" -iname "*$pattern*" -exec mv {} "$backup_dir" \; -exec rm -rf {} +
-            } &
-            loading_bar 3  # Adjust duration for each path
-            wait
+            find "$path" -iname "*$pattern*" -exec mv {} "$backup_dir" \; -exec rm -rf {} +
         done
     }
 
@@ -119,19 +90,11 @@ install_logioptions() {
     installer_zip="/tmp/logioptionsplus_installer.zip"
 
     echo "Downloading logioptionsplus installer..."
-    {
-        curl -L "$installer_url" -o "$installer_zip"
-    } &
-    loading_bar 5  # Adjust the duration as needed
-    wait
+    curl -L "$installer_url" -o "$installer_zip"
 
     # Unzip the installer
     echo "Unzipping logioptionsplus installer..."
-    {
-        unzip -o "$installer_zip" -d /tmp
-    } &
-    loading_bar 3  # Adjust duration as needed
-    wait
+    unzip -o "$installer_zip" -d /tmp
 
     # Install logioptionsplus
     installer_app="/tmp/logioptionsplus_installer.app"
@@ -139,7 +102,7 @@ install_logioptions() {
         echo "Installing logioptionsplus..."
         open "$installer_app"
         read -p "Press any key after installation is complete..."
-        # Resolving Options+ issues when Secure Input is enabled.
+        # Resolving Options+ issues when Secure Input is enabled. More info. here: https://support.logi.com/hc/en-us/articles/360023189334-Logitech-Options-and-Options-issues-when-Secure-Input-is-enabled
         open -a Terminal --args bash -c 'kill -9 $(ioreg -l -d 1 -w 0 | grep kCGSSessionSecureInputPID | sed -E "s/.*\"kCGSSessionSecureInputPID\"=([0-9]+).*/\1/")'
     else
         echo "Installer not found."
