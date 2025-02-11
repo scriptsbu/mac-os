@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# Uninstall logioptionsplus.app
+# Kill any running instances of logioptionsplus
+echo "Stopping any running instances of logioptionsplus..."
 sudo pkill logioptionsplus
+
+# Uninstall logioptionsplus.app
 app_path="/Applications/logioptionsplus.app"
 if [ -d "$app_path" ]; then
     echo "Uninstalling logioptionsplus.app..."
@@ -65,7 +68,7 @@ echo "Unzipping logioptionsplus installer..."
 unzip -o "$installer_zip" -d /tmp
 
 # Install logioptionsplus
-installer_app="/tmp/logioptionsplus_installer/LogiOptionsPlus Installer.app"
+installer_app="/tmp/logioptionsplus_installer/logioptionsplus_installer.app"
 if [ -d "$installer_app" ]; then
     echo "Installing logioptionsplus..."
     open "$installer_app"
