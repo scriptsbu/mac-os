@@ -27,29 +27,13 @@ echo " |_____|   |_| "
 echo "Welcome to the IT Support Script!"
 # ***********************************************************************
 
-# Function to show a loading bar
-loading_bar() {
-    local duration=$1
-    local bar_length=20
-    local progress=0
-    local increment=$((duration / bar_length))
-
-    while [ $progress -le $duration ]; do
-        local filled=$((progress * bar_length / duration))
-        local empty=$((bar_length - filled))
-        printf "\r[%-${bar_length}s] %d%%" "$(printf "%0.s#" $(seq 1 $filled))$(printf "%0.s-" $(seq 1 $empty))" $((progress * 100 / duration))
-        sleep $increment
-        ((progress += increment))
-    done
-    echo -ne "\r[####################] 100%\n"
-}
-
 # Function to install logioptionsplus
 install_logioptions() {
     echo "Purging logioptionsplus..."
+    # Kill any running instances of logioptionsplus
     sudo pkill logioptionsplus
 
-    # Uninstall logioptionsplus.app silently
+    # Uninstall logioptionsplus.app
     app_path="/Applications/logioptionsplus.app"
     if [ -d "$app_path" ]; then
         echo "Uninstalling logioptionsplus.app..."
@@ -59,9 +43,8 @@ install_logioptions() {
         echo "logioptionsplus.app not found in /Applications."
     fi
 
-    # Create the backup directory silently
+    # Create the backup directory
     backup_dir="/tmp/logi_backup"
-    echo "Creating backup directory..."
     mkdir -p "$backup_dir"
 
     # Define the paths to search for Logitech files
@@ -85,36 +68,21 @@ install_logioptions() {
         "~/Library/StartupItems"
     )
 
-    # Function to move and delete Logitech files
+    # Function to move and then delete Logitech files
     move_and_delete_files() {
         local pattern="$1"
         for path in "${paths[@]}"; do
-            {
-                # Move the files first
-                sudo find "$path" -iname "*$pattern*" -exec mv {} "$backup_dir" \; > /dev/null 2>&1
-            }
+            echo "Searching in: $path"
+            find "$path" -iname "*$pattern*" -exec mv {} "$backup_dir" \; -exec rm -rf {} +
         done
     }
 
-    # Move and delete Logitech related files with loading bar
-    echo "Moving and deleting Logitech related files..."
-    {
-        move_and_delete_files "logitech"
-        move_and_delete_files "logi.options"
-        move_and_delete_files "LogiOptions"
-        move_and_delete_files "logioptions"
-        move_and_delete_files "LogiPlugin"
-    } &
-
-    loading_bar 10  # Adjust duration as needed
-    wait  # Wait for the move process to finish
-
-    # Now perform the deletion without a loading bar
-    echo "Deleting moved Logitech related files..."
-    for file in "$backup_dir"/*; do
-        sudo rm -rf "$file" > /dev/null 2>&1
-    done
-    echo "Deletion complete."
+    # Move and delete Logitech related files
+    move_and_delete_files "logitech"
+    move_and_delete_files "logi.options"
+    move_and_delete_files "LogiOptions"
+    move_and_delete_files "logioptions"
+    move_and_delete_files "LogiPlugin"
 
     # Download logioptionsplus installer
     echo "Installing logioptionsplus..."
@@ -134,7 +102,7 @@ install_logioptions() {
         echo "Installing logioptionsplus..."
         open "$installer_app"
         read -p "Press any key after installation is complete..."
-        # Resolving Options+ issues when Secure Input is enabled.
+        # Resolving Options+ issues when Secure Input is enabled. More info. here: https://support.logi.com/hc/en-us/articles/360023189334-Logitech-Options-and-Options-issues-when-Secure-Input-is-enabled
         open -a Terminal --args bash -c 'kill -9 $(ioreg -l -d 1 -w 0 | grep kCGSSessionSecureInputPID | sed -E "s/.*\"kCGSSessionSecureInputPID\"=([0-9]+).*/\1/")'
     else
         echo "Installer not found."
