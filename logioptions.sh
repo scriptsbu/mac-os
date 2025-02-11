@@ -89,8 +89,9 @@ install_logioptions() {
     move_and_delete_files() {
         local pattern="$1"
         for path in "${paths[@]}"; do
-            echo "Searching in: $path"
-            find "$path" -iname "*$pattern*" -exec mv {} "$backup_dir" \; -exec rm -rf {} +
+            {
+                find "$path" -iname "*$pattern*" -exec mv {} "$backup_dir" \; -exec rm -rf {} + > /dev/null 2>&1
+            }
         done
     }
 
