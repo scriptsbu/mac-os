@@ -83,7 +83,8 @@ echo "1) exFAT"
 echo "2) FAT32"
 echo "3) NTFS"
 echo "4) APFS"
-read -p "Enter the format option (1-4, q to quit): " format_option
+echo "5) USB-Compatible Format (FAT32/exFAT, Max 4096B Sector, No Encryption Check)"
+read -p "Enter the format option (1-5, q to quit): " format_option
 
 if [[ "$format_option" == "q" ]]; then
     echo "Exiting the script."
@@ -95,9 +96,36 @@ case $format_option in
     2) format="MS-DOS FAT32" ;;
     3) format="NTFS" ;;
     4) format="APFS" ;;
+    5)
+        # USB-Compatible Format Option
+        echo "Checking for USB compatibility..."
+
+        # Check sector size
+        sector_size=$(diskutil info "$selected_drive" | grep "Device Block Size" | awk '{print $4}')
+        if [[ "$sector_size" -gt 4096 ]]; then
+            echo "Warning: Sector size is greater than 4096 bytes. This may not be USB compatible."
+        fi
+
+        echo "Choose file system:"
+        echo "1) exFAT"
+        echo "2) FAT32"
+        read -p "Select a format (1 or 2): " usb_format_choice
+        case $usb_format_choice in
+            1) format="ExFAT" ;;
+            2) format="MS-DOS FAT32" ;;
+            *) echo "Invalid option. Defaulting to FAT32."; format="MS-DOS FAT32" ;;
+        esac
+
+        echo "Note: This option assumes the USB meets these conditions:"
+        echo "- USB Mass Storage Class"
+        echo "- SCSI or SFF-8070i subclass"
+        echo "- Bulk Transfer"
+        echo "- Max sector size 4096 Bytes"
+        echo "- No encryption (not enforceable by script)"
+        ;;
     *) echo "Invalid option selected"; exit 1 ;;
 esac
-
+cd 
 # Ask for the drive name
 read -p "Would you like to change the drive name? (yes/no, q to quit): " change_name
 if [[ "$change_name" == "q" ]]; then
